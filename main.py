@@ -7,6 +7,10 @@ import os
 # get api key and secret from environment variables secret.KEY and secret.SECRET
 api_key = os.environ.get('secrets.KEY',None)
 api_secret = os.environ.get('secrets.SECRET',None)
+# debugging print all the environment variables that are set
+print('Environment variables:')
+for key, value in os.environ.items():
+    print(key)
 
 if api_key is None: 
     print('API key not found in environment variables')
