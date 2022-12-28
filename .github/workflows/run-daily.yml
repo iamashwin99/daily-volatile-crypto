@@ -28,6 +28,9 @@ jobs:
           pip install -r requirements.txt
       - name: Run main.py
         run: python main.py
+        env:
+          KEY: ${{ secrets.KEY }}
+          SECRET: ${{ secrets.SECRET }}
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
