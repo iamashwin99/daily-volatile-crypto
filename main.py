@@ -2,6 +2,20 @@ import pandas as pd
 from binance.client import Client
 import datetime
 import re
+import os
+
+# get api key and secret from environment variables secret.KEY and secret.SECRET
+api_key = os.environ.get('secrets.KEY',None)
+api_secret = os.environ.get('secrets.SECRET',None)
+
+if api_key is None or api_secret is None:
+    print('API key or secret not found in environment variables')
+    client = Client()
+else:
+    print('API key and secret found in environment variables')
+    client = Client(api_key, api_secret)
+
+
 client = Client()
 date_time =datetime.datetime.now().strftime("%m-%d-%Y-%H-%M-%S")
 print(f"getting data on {date_time}")
