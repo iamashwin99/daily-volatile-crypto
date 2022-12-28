@@ -5,8 +5,8 @@ import re
 import os
 
 # get api key and secret from environment variables secret.KEY and secret.SECRET
-api_key = os.environ.get('secrets.KEY',None)
-api_secret = os.environ.get('secrets.SECRET',None)
+api_key = os.environ.get('KEY',None)
+api_secret = os.environ.get('SECRET',None)
 
 if api_key is None or api_secret is None:
     print('API key or secret not found in environment variables')
