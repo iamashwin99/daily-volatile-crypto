@@ -3,10 +3,18 @@ from binance.client import Client
 import datetime
 import re
 import os
-
+from fp.fp import FreeProxy 
 # get api key and secret from environment variables secret.KEY and secret.SECRET
 api_key = os.environ.get('KEY',None)
 api_secret = os.environ.get('SECRET',None)
+use_proxy = os.environ.get('USE_PROXY',"NO")
+
+if use_proxy == "YES":
+    proxy={
+        'http': FreeProxy(rand=True, timeout=1).get(),
+        'https': FreeProxy(rand=True, timeout=1,https=True).get()
+    }
+    print(f"Using proxy: {proxy}")
 
 if api_key is None: 
     print('API key not found in environment variables')
@@ -16,7 +24,7 @@ elif api_secret is None:
     client = Client()
 else:
     print('API key and secret found in environment variables')
-    client = Client(api_key, api_secret)
+    client = Client(api_key, api_secret, requests_params={'proxies': proxy} if use_proxy == "YES" else None)
 
 
 client = Client()
