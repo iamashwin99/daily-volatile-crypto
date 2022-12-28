@@ -10,6 +10,11 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+      - name: Set environment variables
+        env:
+          KEY: ${{ secrets.KEY }}
+          SECRET: ${{ secrets.SECRET }}
+
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
